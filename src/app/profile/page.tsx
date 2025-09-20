@@ -1,3 +1,4 @@
+
 import { User } from "lucide-react";
 import { ProfileForm } from "./_components/profile-form";
 import { AvatarGenerator } from "./_components/avatar-generator";
@@ -25,7 +26,7 @@ export default function ProfilePage() {
           <CardHeader>
             <CardTitle>Profile Details</CardTitle>
             <CardDescription>Update your personal and farm information.</CardDescription>
-          </Header>
+          </CardHeader>
           <CardContent>
             <ProfileForm />
           </CardContent>
@@ -34,7 +35,7 @@ export default function ProfilePage() {
            <CardHeader>
             <CardTitle>AI Avatar Studio</CardTitle>
             <CardDescription>Generate a unique profile picture.</CardDescription>
-          </Header>
+          </CardHeader>
           <CardContent>
             <AvatarGenerator />
           </CardContent>
