@@ -17,33 +17,22 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getPlaceholderImage } from "@/lib/placeholder-images";
 import { Droplets, Leaf, Bug, TrendingUp } from "lucide-react";
+import { getDashboardSummary } from "@/ai/flows/dashboard-summary";
 
-const alerts = [
-  {
-    id: 1,
-    area: "Field A-3",
-    issue: "Low Soil Moisture",
-    severity: "High",
-    time: "25 minutes ago",
-  },
-  {
-    id: 2,
-    area: "Greenhouse 2",
-    issue: "Potential for Aphid Outbreak",
-    severity: "Medium",
-    time: "2 hours ago",
-  },
-  {
-    id: 3,
-    area: "Field C-1",
-    issue: "Nitrogen Deficiency Detected",
-    severity: "Medium",
-    time: "8 hours ago",
-  },
-];
-
-export default function Dashboard() {
+export default async function Dashboard() {
   const farmMap = getPlaceholderImage("farm-overview-map");
+  const summary = await getDashboardSummary();
+
+  const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {
+    switch (severity) {
+      case 'High':
+        return 'destructive';
+      case 'Medium':
+        return 'secondary';
+      default:
+        return 'outline';
+    }
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -58,8 +47,8 @@ export default function Dashboard() {
             <Leaf className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">92%</div>
-            <p className="text-xs text-muted-foreground">+2.1% from last week</p>
+            <div className="text-2xl font-bold">{summary.cropHealth}%</div>
+            <p className="text-xs text-muted-foreground">{summary.cropHealthTrend} from last week</p>
           </CardContent>
         </Card>
         <Card>
@@ -68,8 +57,8 @@ export default function Dashboard() {
             <Droplets className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">68%</div>
-            <p className="text-xs text-muted-foreground">Optimal range: 60-75%</p>
+            <div className="text-2xl font-bold">{summary.soilMoisture}%</div>
+            <p className="text-xs text-muted-foreground">Optimal range: {summary.soilMoistureRange}</p>
           </CardContent>
         </Card>
         <Card>
@@ -78,8 +67,8 @@ export default function Dashboard() {
             <Bug className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Low</div>
-            <p className="text-xs text-muted-foreground">No immediate threats detected</p>
+            <div className="text-2xl font-bold">{summary.pestRisk}</div>
+            <p className="text-xs text-muted-foreground">{summary.pestRiskDetails}</p>
           </CardContent>
         </Card>
         <Card>
@@ -88,8 +77,8 @@ export default function Dashboard() {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+5%</div>
-            <p className="text-xs text-muted-foreground">Compared to previous season</p>
+            <div className="text-2xl font-bold">{summary.yieldForecast}</div>
+            <p className="text-xs text-muted-foreground">{summary.yieldForecastDetails}</p>
           </CardContent>
         </Card>
       </div>
@@ -130,11 +119,11 @@ export default function Dashboard() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {alerts.map((alert) => (
+                {summary.alerts.map((alert) => (
                   <TableRow key={alert.id}>
                     <TableCell>
                       <div className="font-medium">{alert.area}</div>
-                      <Badge variant={alert.severity === 'High' ? 'destructive' : 'secondary'}>{alert.severity}</Badge>
+                      <Badge variant={getSeverityBadgeVariant(alert.severity)}>{alert.severity}</Badge>
                     </TableCell>
                     <TableCell>{alert.issue}</TableCell>
                     <TableCell className="text-right text-muted-foreground">{alert.time}</TableCell>
