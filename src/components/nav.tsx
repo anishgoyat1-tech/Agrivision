@@ -7,7 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { Bug, Droplets, LayoutDashboard, Leaf, LineChart, Mic } from "lucide-react";
+import { Bug, Droplets, LayoutDashboard, Leaf, LineChart, Mic, FileText } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -15,6 +15,7 @@ const navItems = [
   { href: "/soil-water", label: "Soil & Water", icon: Droplets },
   { href: "/pest-disease", label: "Pest & Disease", icon: Bug },
   { href: "/yield-prediction", label: "Yield Prediction", icon: LineChart },
+  { href: "/reports", label: "Reports", icon: FileText },
   { href: "/voice-assistant", label: "AI Assistant", icon: Mic },
 ];
 

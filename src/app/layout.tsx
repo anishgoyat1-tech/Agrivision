@@ -3,6 +3,17 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { DashboardLayout } from '@/components/dashboard-layout';
+import { Inter as FontSans, Lexend } from "next/font/google"
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+const fontLexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
+})
 
 export const metadata: Metadata = {
   title: 'AgriVision',
@@ -16,17 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body
         className={cn(
-          'min-h-screen bg-background font-body antialiased',
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontLexend.variable
         )}
       >
         <DashboardLayout>{children}</DashboardLayout>
