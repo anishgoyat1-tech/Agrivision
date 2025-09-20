@@ -42,7 +42,7 @@ export default function CropHealthPage() {
           <CardHeader>
             <CardTitle>AI Analysis & Intervention</CardTitle>
             <CardDescription>Upload an NDVI image to get AI-powered suggestions.</CardDescription>
-          </Header>
+          </CardHeader>
           <CardContent>
             <NdviAnalysisForm />
           </CardContent>
