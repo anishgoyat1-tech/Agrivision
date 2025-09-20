@@ -5,8 +5,15 @@ import { UserNav } from "@/components/user-nav";
 import { Nav } from "@/components/nav";
 import Link from "next/link";
 import { Leaf } from "lucide-react";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (pathname === "/sign-in") {
+    return <>{children}</>;
+  }
+
   return (
     <SidebarProvider>
       <Sidebar variant="inset" collapsible="icon">

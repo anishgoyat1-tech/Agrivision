@@ -45,8 +45,8 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link href="/profile">Profile</Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Farm Settings
+          <DropdownMenuItem asChild>
+            <Link href="/farm-settings">Farm Settings</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Subscription

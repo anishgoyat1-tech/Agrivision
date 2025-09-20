@@ -1,4 +1,3 @@
-
 import { User } from "lucide-react";
 import { ProfileForm } from "./_components/profile-form";
 import { AvatarGenerator } from "./_components/avatar-generator";
