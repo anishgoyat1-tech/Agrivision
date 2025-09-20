@@ -1,3 +1,150 @@
-export default function Home() {
-  return <></>;
+import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { getPlaceholderImage } from "@/lib/placeholder-images";
+import { Droplets, Leaf, Bug, TrendingUp } from "lucide-react";
+
+const alerts = [
+  {
+    id: 1,
+    area: "Field A-3",
+    issue: "Low Soil Moisture",
+    severity: "High",
+    time: "25 minutes ago",
+  },
+  {
+    id: 2,
+    area: "Greenhouse 2",
+    issue: "Potential for Aphid Outbreak",
+    severity: "Medium",
+    time: "2 hours ago",
+  },
+  {
+    id: 3,
+    area: "Field C-1",
+    issue: "Nitrogen Deficiency Detected",
+    severity: "Medium",
+    time: "8 hours ago",
+  },
+];
+
+export default function Dashboard() {
+  const farmMap = getPlaceholderImage("farm-overview-map");
+
+  return (
+    <div className="flex flex-col gap-6">
+      <header>
+        <h1 className="text-3xl font-bold tracking-tight font-headline">Farm Overview</h1>
+        <p className="text-muted-foreground">Welcome back! Here's a snapshot of your farm's health.</p>
+      </header>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Crop Health</CardTitle>
+            <Leaf className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">92%</div>
+            <p className="text-xs text-muted-foreground">+2.1% from last week</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Soil Moisture</CardTitle>
+            <Droplets className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">68%</div>
+            <p className="text-xs text-muted-foreground">Optimal range: 60-75%</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Pest Risk</CardTitle>
+            <Bug className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">Low</div>
+            <p className="text-xs text-muted-foreground">No immediate threats detected</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Yield Forecast</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">+5%</div>
+            <p className="text-xs text-muted-foreground">Compared to previous season</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="lg:col-span-4">
+          <CardHeader>
+            <CardTitle>Field Heatmap</CardTitle>
+            <CardDescription>Visual overview of field conditions and potential problem areas.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {farmMap && (
+              <div className="aspect-video overflow-hidden rounded-lg border">
+                <Image
+                  src={farmMap.imageUrl}
+                  alt={farmMap.description}
+                  width={1200}
+                  height={600}
+                  className="h-full w-full object-cover"
+                  data-ai-hint={farmMap.imageHint}
+                />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+        <Card className="lg:col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Alerts</CardTitle>
+            <CardDescription>Critical issues requiring your immediate attention.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Area</TableHead>
+                  <TableHead>Issue</TableHead>
+                  <TableHead className="text-right">Time</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {alerts.map((alert) => (
+                  <TableRow key={alert.id}>
+                    <TableCell>
+                      <div className="font-medium">{alert.area}</div>
+                      <Badge variant={alert.severity === 'High' ? 'destructive' : 'secondary'}>{alert.severity}</Badge>
+                    </TableCell>
+                    <TableCell>{alert.issue}</TableCell>
+                    <TableCell className="text-right text-muted-foreground">{alert.time}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
 }

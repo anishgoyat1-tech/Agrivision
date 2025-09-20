@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "farm-overview-map",
+      "description": "A satellite view of a farm with color-coded sections.",
+      "imageUrl": "https://picsum.photos/seed/farm-map/1200/600",
+      "imageHint": "farm satellite"
+    },
+    {
+      "id": "crop-health-map",
+      "description": "A color-coded NDVI map showing crop health from green (healthy) to red (stressed).",
+      "imageUrl": "https://picsum.photos/seed/ndvi-map/1200/600",
+      "imageHint": "ndvi map"
+    },
+    {
+      "id": "field-heatmap",
+      "description": "A heatmap of a field showing variations in some metric.",
+      "imageUrl": "https://picsum.photos/seed/heatmap/1200/600",
+      "imageHint": "field heatmap"
+    },
+    {
+      "id": "ndvi-upload-placeholder",
+      "description": "An icon-like placeholder for where an NDVI image will be uploaded.",
+      "imageUrl": "https://picsum.photos/seed/upload/400/300",
+      "imageHint": "upload icon"
+    },
+    {
+      "id": "user-avatar",
+      "description": "A placeholder for user avatar.",
+      "imageUrl": "https://picsum.photos/seed/user/40/40",
+      "imageHint": "person portrait"
+    }
+  ]
 }
