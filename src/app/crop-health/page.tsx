@@ -26,13 +26,12 @@ export default function CropHealthPage() {
           </CardHeader>
           <CardContent>
             {cropHealthMap && (
-              <div className="aspect-video overflow-hidden rounded-lg border">
+              <div className="relative aspect-video overflow-hidden rounded-lg border">
                 <Image
                   src={cropHealthMap.imageUrl}
                   alt={cropHealthMap.description}
-                  width={1200}
-                  height={600}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                   data-ai-hint={cropHealthMap.imageHint}
                 />
               </div>
@@ -43,7 +42,7 @@ export default function CropHealthPage() {
           <CardHeader>
             <CardTitle>AI Analysis & Intervention</CardTitle>
             <CardDescription>Upload an NDVI image to get AI-powered suggestions.</CardDescription>
-          </CardHeader>
+          </Header>
           <CardContent>
             <NdviAnalysisForm />
           </CardContent>

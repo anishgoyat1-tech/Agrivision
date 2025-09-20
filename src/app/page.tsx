@@ -91,13 +91,12 @@ export default async function Dashboard() {
           </CardHeader>
           <CardContent>
             {farmMap && (
-              <div className="aspect-video overflow-hidden rounded-lg border">
+              <div className="relative aspect-video overflow-hidden rounded-lg border">
                 <Image
                   src={farmMap.imageUrl}
                   alt={farmMap.description}
-                  width={1200}
-                  height={600}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
                   data-ai-hint={farmMap.imageHint}
                 />
               </div>
