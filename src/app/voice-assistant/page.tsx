@@ -1,8 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
 import { VoiceAssistantClient } from "./_components/voice-assistant-client";
 import { Mic } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 export default function VoiceAssistantPage() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <div className="space-y-6 h-full flex flex-col">
       <header className="flex items-start gap-4">
@@ -10,8 +16,8 @@ export default function VoiceAssistantPage() {
             <Mic className="size-6"/>
         </div>
         <div>
-            <h1 className="text-3xl font-bold tracking-tight font-headline">Voice-based AI Assistant</h1>
-            <p className="text-muted-foreground">Ask questions about your crops and get instant, AI-driven answers.</p>
+            <h1 className="text-3xl font-bold tracking-tight font-headline">{t.voiceAssistant.title}</h1>
+            <p className="text-muted-foreground">{t.voiceAssistant.description}</p>
         </div>
       </header>
       

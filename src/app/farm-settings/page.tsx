@@ -1,8 +1,15 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tractor } from "lucide-react";
 import { FarmSettingsForm } from "./_components/farm-settings-form";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 export default function FarmSettingsPage() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <div className="space-y-6">
       <header className="flex items-start gap-4">
@@ -11,18 +18,18 @@ export default function FarmSettingsPage() {
         </div>
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            Farm Settings
+            {t.farmSettings.title}
           </h1>
           <p className="text-muted-foreground">
-            Manage your farm's settings and preferences.
+            {t.farmSettings.description}
           </p>
         </div>
       </header>
 
       <Card>
         <CardHeader>
-          <CardTitle>Farm Details</CardTitle>
-          <CardDescription>Update your farm information.</CardDescription>
+          <CardTitle>{t.farmSettings.formTitle}</CardTitle>
+          <CardDescription>{t.farmSettings.formDescription}</CardDescription>
         </CardHeader>
         <CardContent>
           <FarmSettingsForm />

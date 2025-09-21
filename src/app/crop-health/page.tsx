@@ -1,11 +1,17 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { getPlaceholderImage } from "@/lib/placeholder-images";
 import { NdviAnalysisForm } from "./_components/ndvi-analysis-form";
 import { Leaf } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 export default function CropHealthPage() {
   const cropHealthMap = getPlaceholderImage("crop-health-map");
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <div className="space-y-6">
@@ -14,15 +20,15 @@ export default function CropHealthPage() {
             <Leaf className="size-6"/>
         </div>
         <div>
-            <h1 className="text-3xl font-bold tracking-tight font-headline">Crop Health Monitoring</h1>
-            <p className="text-muted-foreground">Analyze NDVI data to detect plant stress and receive intervention suggestions.</p>
+            <h1 className="text-3xl font-bold tracking-tight font-headline">{t.cropHealth.title}</h1>
+            <p className="text-muted-foreground">{t.cropHealth.description}</p>
         </div>
       </header>
       <div className="grid gap-6 lg:grid-cols-5">
         <Card className="lg:col-span-3">
           <CardHeader>
-            <CardTitle>Crop Health Map</CardTitle>
-            <CardDescription>Color-coded NDVI map indicating plant health and stress levels.</CardDescription>
+            <CardTitle>{t.cropHealth.mapTitle}</CardTitle>
+            <CardDescription>{t.cropHealth.mapDescription}</CardDescription>
           </CardHeader>
           <CardContent>
             {cropHealthMap && (
@@ -40,8 +46,8 @@ export default function CropHealthPage() {
         </Card>
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>AI Analysis & Intervention</CardTitle>
-            <CardDescription>Upload an NDVI image to get AI-powered suggestions.</CardDescription>
+            <CardTitle>{t.cropHealth.analysisTitle}</CardTitle>
+            <CardDescription>{t.cropHealth.analysisDescription}</CardDescription>
           </CardHeader>
           <CardContent>
             <NdviAnalysisForm />

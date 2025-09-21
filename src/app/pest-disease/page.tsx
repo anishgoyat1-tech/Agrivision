@@ -1,8 +1,15 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PestForecastForm } from "./_components/pest-forecast-form";
 import { Bug } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 export default function PestDiseasePage() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <div className="space-y-6">
        <header className="flex items-start gap-4">
@@ -10,15 +17,15 @@ export default function PestDiseasePage() {
             <Bug className="size-6"/>
         </div>
         <div>
-            <h1 className="text-3xl font-bold tracking-tight font-headline">Pest & Disease Prediction</h1>
-            <p className="text-muted-foreground">Forecast potential pest outbreaks and get preventive recommendations.</p>
+            <h1 className="text-3xl font-bold tracking-tight font-headline">{t.pestDisease.title}</h1>
+            <p className="text-muted-foreground">{t.pestDisease.description}</p>
         </div>
       </header>
 
       <Card>
         <CardHeader>
-          <CardTitle>AI Pest Outbreak Forecast</CardTitle>
-          <CardDescription>Provide historical data to generate a risk assessment and action plan.</CardDescription>
+          <CardTitle>{t.pestDisease.formTitle}</CardTitle>
+          <CardDescription>{t.pestDisease.formDescription}</CardDescription>
         </CardHeader>
         <CardContent>
           <PestForecastForm />

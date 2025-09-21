@@ -8,20 +8,25 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { Bug, Droplets, LayoutDashboard, Leaf, LineChart, Mic, FileText, Tractor } from "lucide-react";
-
-const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/crop-health", label: "Crop Health", icon: Leaf },
-  { href: "/soil-water", label: "Soil & Water", icon: Droplets },
-  { href: "/pest-disease", label: "Pest & Disease", icon: Bug },
-  { href: "/yield-prediction", label: "Yield Prediction", icon: LineChart },
-  { href: "/reports", label: "Reports", icon: FileText },
-  { href: "/voice-assistant", label: "AI Assistant", icon: Mic },
-  { href: "/farm-settings", label: "Farm Settings", icon: Tractor },
-];
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 export function Nav() {
   const pathname = usePathname();
+  const { language } = useLanguage();
+  const t = translations[language].nav;
+
+  const navItems = [
+    { href: "/", label: t.dashboard, icon: LayoutDashboard },
+    { href: "/crop-health", label: t.cropHealth, icon: Leaf },
+    { href: "/soil-water", label: t.soilWater, icon: Droplets },
+    { href: "/pest-disease", label: t.pestDisease, icon: Bug },
+    { href: "/yield-prediction", label: t.yieldPrediction, icon: LineChart },
+    { href: "/reports", label: t.reports, icon: FileText },
+    { href: "/voice-assistant", label: t.aiAssistant, icon: Mic },
+    { href: "/farm-settings", label: t.farmSettings, icon: Tractor },
+  ];
+  
 
   return (
     <SidebarMenu>
