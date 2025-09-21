@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { DashboardLayout } from '@/components/dashboard-layout';
 import { Inter as FontSans, Lexend } from "next/font/google"
+import { LanguageProvider } from '@/context/language-context';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -34,7 +35,9 @@ export default function RootLayout({
           fontLexend.variable
         )}
       >
-        <DashboardLayout>{children}</DashboardLayout>
+        <LanguageProvider>
+          <DashboardLayout>{children}</DashboardLayout>
+        </LanguageProvider>
         <Toaster />
       </body>
     </html>

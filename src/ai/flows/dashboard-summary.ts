@@ -11,6 +11,7 @@ import {z} from 'genkit';
 
 const DashboardSummaryInputSchema = z.object({
   location: z.string().describe('The location of the farm.'),
+  language: z.string().describe('The language for the summary (e.g., "en", "hi", "pa" for English, Hindi, Punjabi).'),
 });
 
 const DashboardSummaryOutputSchema = z.object({
@@ -45,15 +46,15 @@ export type DashboardSummaryOutput = z.infer<
   typeof DashboardSummaryOutputSchema
 >;
 
-export async function getDashboardSummary(location: string): Promise<DashboardSummaryOutput> {
-  return dashboardSummaryFlow({ location });
+export async function getDashboardSummary(location: string, language: string): Promise<DashboardSummaryOutput> {
+  return dashboardSummaryFlow({ location, language });
 }
 
 const prompt = ai.definePrompt({
   name: 'dashboardSummaryPrompt',
   input: { schema: DashboardSummaryInputSchema },
   output: { schema: DashboardSummaryOutputSchema },
-  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard located in {{{location}}}. 
+  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard located in {{{location}}}. The summary should be in the language requested: {{{language}}}.
   
   Provide the following information:
   - Overall crop health percentage and its trend from last week.

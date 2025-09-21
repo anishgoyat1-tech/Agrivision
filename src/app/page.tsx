@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -14,14 +17,33 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Droplets, Leaf, Bug, TrendingUp } from "lucide-react";
-import { getDashboardSummary } from "@/ai/flows/dashboard-summary";
+import { Droplets, Leaf, Bug, TrendingUp, Loader2 } from "lucide-react";
+import { getDashboardSummary, DashboardSummaryOutput } from "@/ai/flows/dashboard-summary";
+import { useLanguage } from "@/context/language-context";
 
-export default async function Dashboard() {
-  // In a real app, you would fetch the user's saved farm location.
-  // For now, we'll use the default from the settings form.
-  const farmLocation = "Punjab, India";
-  const summary = await getDashboardSummary(farmLocation);
+export default function Dashboard() {
+  const [summary, setSummary] = useState<DashboardSummaryOutput | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
+
+  useEffect(() => {
+    async function loadSummary() {
+      setLoading(true);
+      try {
+        // In a real app, you would fetch the user's saved farm location.
+        const farmLocation = "Punjab, India";
+        const result = await getDashboardSummary(farmLocation, language);
+        setSummary(result);
+      } catch (error) {
+        console.error("Failed to get dashboard summary:", error);
+        // Optionally, set an error state here to show in the UI
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadSummary();
+  }, [language]);
+
 
   const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {
     switch (severity) {
@@ -34,11 +56,20 @@ export default async function Dashboard() {
     }
   }
 
+  if (loading || !summary) {
+    return (
+        <div className="flex justify-center items-center h-full">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+    );
+  }
+
+
   return (
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="text-3xl font-bold tracking-tight font-headline">Farm Overview</h1>
-        <p className="text-muted-foreground">Welcome back! Here's a snapshot of your farm's health in {farmLocation}.</p>
+        <p className="text-muted-foreground">Welcome back! Here's a snapshot of your farm's health in Punjab, India.</p>
       </header>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>

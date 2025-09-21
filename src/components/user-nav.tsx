@@ -15,11 +15,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { getPlaceholderImage } from "@/lib/placeholder-images";
+import { useLanguage } from "@/context/language-context";
+import { Check } from "lucide-react";
 
 export function UserNav() {
   const userAvatar = getPlaceholderImage("user-avatar");
+  const { language, setLanguage } = useLanguage();
 
   return (
     <DropdownMenu>
@@ -48,6 +56,16 @@ export function UserNav() {
           <DropdownMenuItem asChild>
             <Link href="/farm-settings">Farm Settings</Link>
           </DropdownMenuItem>
+           <DropdownMenuSub>
+            <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuRadioGroup value={language} onValueChange={(value) => setLanguage(value as 'en' | 'hi' | 'pa')}>
+                <DropdownMenuRadioItem value="en">English</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="hi">Hindi</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="pa">Punjabi</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
           <DropdownMenuItem>
             Subscription
           </DropdownMenuItem>
