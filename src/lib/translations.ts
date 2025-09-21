@@ -8,7 +8,7 @@ export const translations = {
       pestDisease: "Pest & Disease",
       yieldPrediction: "Yield Prediction",
       reports: "Reports",
-      aiAssistant: "AI Assistant",
+aiAssistant: "AI Assistant",
       farmSettings: "Farm Settings",
       profile: "Profile",
       logout: "Log out",
@@ -88,8 +88,8 @@ export const translations = {
         description: "Manage your account settings and preferences.",
         formTitle: "Profile Details",
         formDescription: "Update your personal and farm information.",
-        avatarTitle: "AI Avatar Studio",
-        avatarDescription: "Generate a unique profile picture.",
+        avatarTitle: "Avatar Selection",
+        avatarDescription: "Choose a profile picture from the options below.",
     }
   },
   hi: {
@@ -180,8 +180,8 @@ export const translations = {
         description: "अपने खाते की सेटिंग्स और प्राथमिकताओं का प्रबंधन करें।",
         formTitle: "प्रोफ़ाइल विवरण",
         formDescription: "अपनी व्यक्तिगत और खेत की जानकारी अपडेट करें।",
-        avatarTitle: "एआई अवतार स्टूडियो",
-        avatarDescription: "एक अद्वितीय प्रोफ़ाइल चित्र बनाएं।",
+        avatarTitle: "अवतार चयन",
+        avatarDescription: "नीचे दिए गए विकल्पों में से एक प्रोफ़ाइल चित्र चुनें।",
     }
   },
   pa: {
@@ -272,8 +272,8 @@ export const translations = {
         description: "ਆਪਣੇ ਖਾਤੇ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਅਤੇ ਤਰਜੀਹਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
         formTitle: "ਪ੍ਰੋਫਾਈਲ ਵੇਰਵੇ",
         formDescription: "ਆਪਣੀ ਨਿੱਜੀ ਅਤੇ ਫਾਰਮ ਜਾਣਕਾਰੀ ਨੂੰ ਅਪਡੇਟ ਕਰੋ।",
-        avatarTitle: "ਏਆਈ ਅਵਤਾਰ ਸਟੂਡੀਓ",
-        avatarDescription: "ਇੱਕ ਵਿਲੱਖਣ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਬਣਾਓ।",
+        avatarTitle: "ਅਵਤਾਰ ਚੋਣ",
+        avatarDescription: "ਹੇਠਾਂ ਦਿੱਤੇ ਵਿਕਲਪਾਂ ਵਿੱਚੋਂ ਇੱਕ ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ ਚੁਣੋ।",
     }
   },
 };
