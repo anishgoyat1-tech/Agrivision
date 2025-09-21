@@ -9,6 +9,10 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
+const DashboardSummaryInputSchema = z.object({
+  location: z.string().describe('The location of the farm.'),
+});
+
 const DashboardSummaryOutputSchema = z.object({
   cropHealth: z
     .number()
@@ -41,20 +45,21 @@ export type DashboardSummaryOutput = z.infer<
   typeof DashboardSummaryOutputSchema
 >;
 
-export async function getDashboardSummary(): Promise<DashboardSummaryOutput> {
-  return dashboardSummaryFlow();
+export async function getDashboardSummary(location: string): Promise<DashboardSummaryOutput> {
+  return dashboardSummaryFlow({ location });
 }
 
 const prompt = ai.definePrompt({
   name: 'dashboardSummaryPrompt',
-  output: {schema: DashboardSummaryOutputSchema},
-  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard. 
+  input: { schema: DashboardSummaryInputSchema },
+  output: { schema: DashboardSummaryOutputSchema },
+  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard located in {{{location}}}. 
   
   Provide the following information:
   - Overall crop health percentage and its trend from last week.
   - Average soil moisture and the optimal range.
-  - Current pest risk level with a brief description.
-  - A yield forecast compared to the previous season with brief details.
+  - Current pest risk level with a brief description, tailored to the location.
+  - A yield forecast compared to the previous season with brief details, tailored to the location.
   - A list of 3-5 critical alerts with area, issue, severity, and time.
   
   Ensure the data is varied and reflects a typical day on a technologically advanced farm. Make the times for alerts recent (e.g., "minutes ago", "hours ago").`,
@@ -63,10 +68,11 @@ const prompt = ai.definePrompt({
 const dashboardSummaryFlow = ai.defineFlow(
   {
     name: 'dashboardSummaryFlow',
+    inputSchema: DashboardSummaryInputSchema,
     outputSchema: DashboardSummaryOutputSchema,
   },
-  async () => {
-    const {output} = await prompt();
+  async (input) => {
+    const {output} = await prompt(input);
     return output!;
   }
 );

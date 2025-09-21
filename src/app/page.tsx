@@ -21,7 +21,10 @@ import { getDashboardSummary } from "@/ai/flows/dashboard-summary";
 
 export default async function Dashboard() {
   const farmMap = getPlaceholderImage("farm-overview-map");
-  const summary = await getDashboardSummary();
+  // In a real app, you would fetch the user's saved farm location.
+  // For now, we'll use the default from the settings form.
+  const farmLocation = "Willow Creek, CA";
+  const summary = await getDashboardSummary(farmLocation);
 
   const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {
     switch (severity) {
@@ -38,7 +41,7 @@ export default async function Dashboard() {
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="text-3xl font-bold tracking-tight font-headline">Farm Overview</h1>
-        <p className="text-muted-foreground">Welcome back! Here's a snapshot of your farm's health.</p>
+        <p className="text-muted-foreground">Welcome back! Here's a snapshot of your farm's health in {farmLocation}.</p>
       </header>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
