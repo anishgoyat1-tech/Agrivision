@@ -86,27 +86,8 @@ export default async function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
-          <CardHeader>
-            <CardTitle>Field Heatmap</CardTitle>
-            <CardDescription>Visual overview of field conditions and potential problem areas.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {farmMap && (
-              <div className="relative aspect-video overflow-hidden rounded-lg border">
-                <Image
-                  src={farmMap.imageUrl}
-                  alt={farmMap.description}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={farmMap.imageHint}
-                />
-              </div>
-            )}
-          </CardContent>
-        </Card>
-        <Card className="lg:col-span-3">
+      <div className="grid gap-6">
+        <Card>
           <CardHeader>
             <CardTitle>Recent Alerts</CardTitle>
             <CardDescription>Critical issues requiring your immediate attention.</CardDescription>
