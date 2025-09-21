@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -15,15 +14,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { getPlaceholderImage } from "@/lib/placeholder-images";
 import { Droplets, Leaf, Bug, TrendingUp } from "lucide-react";
 import { getDashboardSummary } from "@/ai/flows/dashboard-summary";
 
 export default async function Dashboard() {
-  const farmMap = getPlaceholderImage("farm-overview-map");
   // In a real app, you would fetch the user's saved farm location.
   // For now, we'll use the default from the settings form.
-  const farmLocation = "India";
+  const farmLocation = "Punjab, India";
   const summary = await getDashboardSummary(farmLocation);
 
   const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {

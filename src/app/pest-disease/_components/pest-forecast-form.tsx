@@ -33,7 +33,7 @@ export function PestForecastForm() {
       historicalWeatherData: "Last 30 days: Temp avg 28°C, high humidity, intermittent heavy rainfall.",
       cropData: "Corn, late vegetative stage, dense canopy.",
       pestData: "History of corn borers and aphids in the region, especially after heavy rain.",
-      location: "India",
+      location: "Punjab, India",
     },
   });
 
