@@ -6,6 +6,7 @@ import { DashboardLayout } from '@/components/dashboard-layout';
 import { Inter as FontSans, Lexend } from "next/font/google"
 import { LanguageProvider } from '@/context/language-context';
 import { FarmSettingsProvider } from '@/context/farm-settings-context';
+import { UserProvider } from '@/context/user-context';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,7 +39,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <FarmSettingsProvider>
-            <DashboardLayout>{children}</DashboardLayout>
+            <UserProvider>
+              <DashboardLayout>{children}</DashboardLayout>
+            </UserProvider>
           </FarmSettingsProvider>
         </LanguageProvider>
         <Toaster />

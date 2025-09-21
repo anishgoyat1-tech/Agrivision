@@ -16,12 +16,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { useUser } from "@/context/user-context";
+import { useFarmSettings } from "@/context/farm-settings-context";
 
 const profileSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
-  farmName: z.string().min(3, "Farm name must be at least 3 characters."),
-  farmLocation: z.string().min(3, "Farm location is required."),
   bio: z.string().max(250, "Bio can be a maximum of 250 characters.").optional(),
 });
 
@@ -29,15 +29,15 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 
 export function ProfileForm() {
     const { toast } = useToast();
+    const { user, setUser } = useUser();
+    const { farmSettings } = useFarmSettings();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      fullName: "AgriVision User",
-      email: "farmer@agrivision.io",
-      farmName: "Sunny Meadows Farm",
-      farmLocation: "Punjab, India",
-      bio: "Dedicated to sustainable and innovative farming practices.",
+      fullName: user.fullName,
+      email: user.email,
+      bio: user.bio,
     },
   });
   
@@ -46,7 +46,7 @@ export function ProfileForm() {
   async function onSubmit(values: ProfileFormValues) {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(values);
+    setUser({ ...user, ...values });
     toast({
         title: "Profile Updated",
         description: "Your information has been successfully saved.",
@@ -83,32 +83,14 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-             <FormField
-              control={form.control}
-              name="farmName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Farm Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. Sunny Meadows Farm" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="farmLocation"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Farm Location</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. Punjab, India" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+             <FormItem>
+                <FormLabel>Farm Name</FormLabel>
+                <Input value={farmSettings.farmName} disabled />
+             </FormItem>
+             <FormItem>
+                <FormLabel>Farm Location</FormLabel>
+                <Input value={farmSettings.farmLocation} disabled />
+             </FormItem>
         </div>
 
         <FormField
