@@ -38,7 +38,7 @@ const generateAvatarFlow = ai.defineFlow(
         }
     });
 
-    if (!media.url) {
+    if (!media?.url) {
         throw new Error('Image generation failed to produce an image.');
     }
 
