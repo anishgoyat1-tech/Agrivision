@@ -21,19 +21,20 @@ import { Droplets, Leaf, Bug, TrendingUp, Loader2 } from "lucide-react";
 import { getDashboardSummary, DashboardSummaryOutput } from "@/ai/flows/dashboard-summary";
 import { useLanguage } from "@/context/language-context";
 import { translations } from "@/lib/translations";
+import { useFarmSettings } from "@/context/farm-settings-context";
 
 export default function Dashboard() {
   const [summary, setSummary] = useState<DashboardSummaryOutput | null>(null);
   const [loading, setLoading] = useState(true);
   const { language } = useLanguage();
+  const { farmSettings } = useFarmSettings();
   const t = translations[language].dashboard;
 
   useEffect(() => {
     async function loadSummary() {
       setLoading(true);
       try {
-        const farmLocation = "Punjab, India";
-        const result = await getDashboardSummary(farmLocation, language);
+        const result = await getDashboardSummary(farmSettings.farmLocation, language);
         setSummary(result);
       } catch (error) {
         console.error("Failed to get dashboard summary:", error);
@@ -42,7 +43,7 @@ export default function Dashboard() {
       }
     }
     loadSummary();
-  }, [language]);
+  }, [language, farmSettings.farmLocation]);
 
 
   const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {
@@ -69,7 +70,7 @@ export default function Dashboard() {
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="text-3xl font-bold tracking-tight font-headline">{t.title}</h1>
-        <p className="text-muted-foreground">{t.description}</p>
+        <p className="text-muted-foreground">{`Welcome back! Here's a snapshot of your farm's health in ${farmSettings.farmLocation}.`}</p>
       </header>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>

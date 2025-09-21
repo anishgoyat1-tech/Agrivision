@@ -17,6 +17,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useFarmSettings } from "@/context/farm-settings-context";
+import type { FarmSettings } from "@/context/farm-settings-context";
 
 const farmSettingsSchema = z.object({
   farmName: z.string().min(3, "Farm name must be at least 3 characters."),
@@ -30,24 +32,20 @@ type FarmSettingsFormValues = z.infer<typeof farmSettingsSchema>;
 
 export function FarmSettingsForm() {
   const { toast } = useToast();
+  const { farmSettings, setFarmSettings } = useFarmSettings();
 
   const form = useForm<FarmSettingsFormValues>({
     resolver: zodResolver(farmSettingsSchema),
-    defaultValues: {
-      farmName: "Sunny Meadows Farm",
-      farmLocation: "Punjab, India",
-      farmSize: 500,
-      farmType: "arable",
-      description: "A family-owned farm dedicated to sustainable and innovative farming practices, specializing in corn and soybean cultivation.",
-    },
+    defaultValues: farmSettings,
   });
 
-  const { formState: { isSubmitting } } = form;
+  const { formState: { isSubmitting }, reset } = form;
 
   async function onSubmit(values: FarmSettingsFormValues) {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(values);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setFarmSettings(values as FarmSettings);
+    reset(values);
     toast({
       title: "Farm Settings Updated",
       description: "Your farm information has been successfully saved.",

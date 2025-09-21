@@ -18,13 +18,13 @@ export function Nav() {
 
   const navItems = [
     { href: "/", label: t.dashboard, icon: LayoutDashboard },
+    { href: "/farm-settings", label: t.farmSettings, icon: Tractor },
     { href: "/crop-health", label: t.cropHealth, icon: Leaf },
     { href: "/soil-water", label: t.soilWater, icon: Droplets },
     { href: "/pest-disease", label: t.pestDisease, icon: Bug },
     { href: "/yield-prediction", label: t.yieldPrediction, icon: LineChart },
     { href: "/reports", label: t.reports, icon: FileText },
     { href: "/voice-assistant", label: t.aiAssistant, icon: Mic },
-    { href: "/farm-settings", label: t.farmSettings, icon: Tractor },
   ];
   
 
