@@ -36,7 +36,7 @@ export function ProfileForm() {
       fullName: "AgriVision User",
       email: "farmer@agrivision.io",
       farmName: "Sunny Meadows Farm",
-      farmLocation: "Willow Creek, CA",
+      farmLocation: "India",
       bio: "Dedicated to sustainable and innovative farming practices.",
     },
   });
@@ -103,7 +103,7 @@ export function ProfileForm() {
                 <FormItem>
                   <FormLabel>Farm Location</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Willow Creek, CA" {...field} />
+                    <Input placeholder="e.g. India" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

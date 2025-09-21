@@ -23,7 +23,7 @@ export default async function Dashboard() {
   const farmMap = getPlaceholderImage("farm-overview-map");
   // In a real app, you would fetch the user's saved farm location.
   // For now, we'll use the default from the settings form.
-  const farmLocation = "Willow Creek, CA";
+  const farmLocation = "India";
   const summary = await getDashboardSummary(farmLocation);
 
   const getSeverityBadgeVariant = (severity: 'High' | 'Medium' | 'Low') => {

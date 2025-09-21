@@ -35,7 +35,7 @@ export function FarmSettingsForm() {
     resolver: zodResolver(farmSettingsSchema),
     defaultValues: {
       farmName: "Sunny Meadows Farm",
-      farmLocation: "Willow Creek, CA",
+      farmLocation: "India",
       farmSize: 500,
       farmType: "arable",
       description: "A family-owned farm dedicated to sustainable and innovative farming practices, specializing in corn and soybean cultivation.",
@@ -78,7 +78,7 @@ export function FarmSettingsForm() {
               <FormItem>
                 <FormLabel>Farm Location</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. Willow Creek, CA" {...field} />
+                  <Input placeholder="e.g. India" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

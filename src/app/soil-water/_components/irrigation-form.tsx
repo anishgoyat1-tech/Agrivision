@@ -39,7 +39,7 @@ export function IrrigationForm() {
       humidity: 70,
       weatherForecast: "Sunny with light clouds for the next 3 days, potential rain on the 4th day.",
       growthStage: "Vegetative",
-      location: "Central Valley, California",
+      location: "India",
     },
   });
 
@@ -68,7 +68,7 @@ export function IrrigationForm() {
             <FormField control={form.control} name="soilMoisture" render={({ field }) => <FormItem><FormLabel>Soil Moisture (%)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>} />
             <FormField control={form.control} name="temperature" render={({ field }) => <FormItem><FormLabel>Temperature (°C)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>} />
             <FormField control={form.control} name="humidity" render={({ field }) => <FormItem><FormLabel>Humidity (%)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>} />
-            <FormField control={form.control} name="location" render={({ field }) => <FormItem><FormLabel>Location</FormLabel><FormControl><Input placeholder="e.g., Central Valley, CA" {...field} /></FormControl><FormMessage /></FormItem>} />
+            <FormField control={form.control} name="location" render={({ field }) => <FormItem><FormLabel>Location</FormLabel><FormControl><Input placeholder="e.g., India" {...field} /></FormControl><FormMessage /></FormItem>} />
           </div>
           <FormField control={form.control} name="weatherForecast" render={({ field }) => <FormItem><FormLabel>7-Day Weather Forecast</FormLabel><FormControl><Input placeholder="e.g., Sunny with clouds..." {...field} /></FormControl><FormMessage /></FormItem>} />
           <Button type="submit" disabled={isLoading} className="w-full">
