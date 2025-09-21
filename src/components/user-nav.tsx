@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -23,11 +24,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { getPlaceholderImage } from "@/lib/placeholder-images";
 import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 import { Check } from "lucide-react";
 
 export function UserNav() {
   const userAvatar = getPlaceholderImage("user-avatar");
   const { language, setLanguage } = useLanguage();
+  const t = translations[language].nav;
 
   return (
     <DropdownMenu>
@@ -51,27 +54,29 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link href="/profile">Profile</Link>
+            <Link href="/profile">{t.profile}</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Link href="/farm-settings">Farm Settings</Link>
+            <Link href="/farm-settings">{t.farmSettings}</Link>
           </DropdownMenuItem>
            <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Language</DropdownMenuSubTrigger>
+            <DropdownMenuSubTrigger>{t.language}</DropdownMenuSubTrigger>
             <DropdownMenuSubContent>
               <DropdownMenuRadioGroup value={language} onValueChange={(value) => setLanguage(value as 'en' | 'hi' | 'pa')}>
-                <DropdownMenuRadioItem value="en">English</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="hi">Hindi</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="pa">Punjabi</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="en">{t.english}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="hi">{t.hindi}</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="pa">{t.punjabi}</DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuSubContent>
           </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          Log out
+          {t.logout}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
+
+    

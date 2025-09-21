@@ -1,3 +1,4 @@
+
 export const translations = {
   en: {
     nav: {
@@ -9,6 +10,12 @@ export const translations = {
       reports: "Reports",
       aiAssistant: "AI Assistant",
       farmSettings: "Farm Settings",
+      profile: "Profile",
+      logout: "Log out",
+      language: "Language",
+      english: "English",
+      hindi: "Hindi",
+      punjabi: "Punjabi",
     },
     dashboard: {
       title: "Farm Overview",
@@ -62,6 +69,19 @@ export const translations = {
         description: "Manage your farm's settings and preferences.",
         formTitle: "Farm Details",
         formDescription: "Update your farm information.",
+        farmName: "Farm Name",
+        farmLocation: "Farm Location",
+        farmSize: "Farm Size (acres)",
+        farmType: "Primary Farm Type",
+        farmDescriptionLabel: "Farm Description",
+        farmTypes: {
+            arable: "Arable (Crops)",
+            pastoral: "Pastoral (Livestock)",
+            mixed: "Mixed",
+            horticulture: "Horticulture",
+            forestry: "Forestry",
+        },
+        saveChanges: "Save Changes",
     },
     profile: {
         title: "User Profile",
@@ -82,6 +102,12 @@ export const translations = {
       reports: "रिपोर्ट",
       aiAssistant: "एआई सहायक",
       farmSettings: "खेत सेटिंग्स",
+      profile: "प्रोफ़ाइल",
+      logout: "लॉग आउट",
+      language: "भाषा",
+      english: "अंग्रेज़ी",
+      hindi: "हिंदी",
+      punjabi: "पंजाबी",
     },
     dashboard: {
       title: "खेत का अवलोकन",
@@ -135,6 +161,19 @@ export const translations = {
         description: "अपने खेत की सेटिंग्स और प्राथमिकताओं का प्रबंधन करें।",
         formTitle: "खेत का विवरण",
         formDescription: "अपनी खेत की जानकारी अपडेट करें।",
+        farmName: "खेत का नाम",
+        farmLocation: "खेत का स्थान",
+        farmSize: "खेत का आकार (एकड़)",
+        farmType: "प्राथमिक खेत का प्रकार",
+        farmDescriptionLabel: "खेत का विवरण",
+        farmTypes: {
+            arable: "कृषि योग्य (फसलें)",
+            pastoral: "देहाती (पशुधन)",
+            mixed: "मिश्रित",
+            horticulture: "बागवानी",
+            forestry: "वानिकी",
+        },
+        saveChanges: "परिवर्तन सहेजें",
     },
     profile: {
         title: "उपयोगकर्ता प्रोफ़ाइल",
@@ -155,6 +194,12 @@ export const translations = {
       reports: "ਰਿਪੋਰਟਾਂ",
       aiAssistant: "ਏਆਈ ਸਹਾਇਕ",
       farmSettings: "ਫਾਰਮ ਸੈਟਿੰਗਜ਼",
+      profile: "ਪ੍ਰੋਫਾਈਲ",
+      logout: "ਲੌਗ ਆਊਟ",
+      language: "ਭਾਸ਼ਾ",
+      english: "ਅੰਗਰੇਜ਼ੀ",
+      hindi: "ਹਿੰਦੀ",
+      punjabi: "ਪੰਜਾਬੀ",
     },
     dashboard: {
       title: "ਖੇਤ ਦੀ ਸੰਖੇਪ ਜਾਣਕਾਰੀ",
@@ -208,6 +253,19 @@ export const translations = {
         description: "ਆਪਣੇ ਫਾਰਮ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਅਤੇ ਤਰਜੀਹਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
         formTitle: "ਫਾਰਮ ਵੇਰਵੇ",
         formDescription: "ਆਪਣੀ ਫਾਰਮ ਜਾਣਕਾਰੀ ਨੂੰ ਅਪਡੇਟ ਕਰੋ।",
+        farmName: "ਖੇਤ ਦਾ ਨਾਮ",
+        farmLocation: "ਖੇਤ ਦਾ ਸਥਾਨ",
+        farmSize: "ਖੇਤ ਦਾ ਆਕਾਰ (ਏਕੜ)",
+        farmType: "ਮੁੱਖ ਖੇਤ ਦੀ ਕਿਸਮ",
+        farmDescriptionLabel: "ਖੇਤ ਦਾ ਵੇਰਵਾ",
+        farmTypes: {
+            arable: "ਵਾਹੀਯੋਗ (ਫਸਲਾਂ)",
+            pastoral: "ਪਸ਼ੂ ਪਾਲਣ (ਪਸ਼ੂ)",
+            mixed: "ਮਿਸ਼ਰਤ",
+            horticulture: "ਬਾਗਬਾਨੀ",
+            forestry: "ਜੰਗਲਾਤ",
+        },
+        saveChanges: "ਤਬਦੀਲੀਆਂ ਸੁਰੱਖਿਅਤ ਕਰੋ",
     },
     profile: {
         title: "ਉਪਭੋਗਤਾ ਪ੍ਰੋਫਾਈਲ",
@@ -219,3 +277,5 @@ export const translations = {
     }
   },
 };
+
+    

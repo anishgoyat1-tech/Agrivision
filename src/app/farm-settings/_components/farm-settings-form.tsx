@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -19,6 +20,8 @@ import { Loader2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useFarmSettings } from "@/context/farm-settings-context";
 import type { FarmSettings } from "@/context/farm-settings-context";
+import { useLanguage } from "@/context/language-context";
+import { translations } from "@/lib/translations";
 
 const farmSettingsSchema = z.object({
   farmName: z.string().min(3, "Farm name must be at least 3 characters."),
@@ -33,6 +36,8 @@ type FarmSettingsFormValues = z.infer<typeof farmSettingsSchema>;
 export function FarmSettingsForm() {
   const { toast } = useToast();
   const { farmSettings, setFarmSettings } = useFarmSettings();
+  const { language } = useLanguage();
+  const t = translations[language].farmSettings;
 
   const form = useForm<FarmSettingsFormValues>({
     resolver: zodResolver(farmSettingsSchema),
@@ -61,7 +66,7 @@ export function FarmSettingsForm() {
             name="farmName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Farm Name</FormLabel>
+                <FormLabel>{t.farmName}</FormLabel>
                 <FormControl>
                   <Input placeholder="e.g. Sunny Meadows Farm" {...field} />
                 </FormControl>
@@ -74,7 +79,7 @@ export function FarmSettingsForm() {
             name="farmLocation"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Farm Location</FormLabel>
+                <FormLabel>{t.farmLocation}</FormLabel>
                 <FormControl>
                   <Input placeholder="e.g. Punjab, India" {...field} />
                 </FormControl>
@@ -87,7 +92,7 @@ export function FarmSettingsForm() {
             name="farmSize"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Farm Size (acres)</FormLabel>
+                <FormLabel>{t.farmSize}</FormLabel>
                 <FormControl>
                   <Input type="number" placeholder="e.g. 500" {...field} />
                 </FormControl>
@@ -100,7 +105,7 @@ export function FarmSettingsForm() {
             name="farmType"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Primary Farm Type</FormLabel>
+                <FormLabel>{t.farmType}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
@@ -108,11 +113,11 @@ export function FarmSettingsForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="arable">Arable (Crops)</SelectItem>
-                    <SelectItem value="pastoral">Pastoral (Livestock)</SelectItem>
-                    <SelectItem value="mixed">Mixed</SelectItem>
-                    <SelectItem value="horticulture">Horticulture</SelectItem>
-                    <SelectItem value="forestry">Forestry</SelectItem>
+                    <SelectItem value="arable">{t.farmTypes.arable}</SelectItem>
+                    <SelectItem value="pastoral">{t.farmTypes.pastoral}</SelectItem>
+                    <SelectItem value="mixed">{t.farmTypes.mixed}</SelectItem>
+                    <SelectItem value="horticulture">{t.farmTypes.horticulture}</SelectItem>
+                    <SelectItem value="forestry">{t.farmTypes.forestry}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -126,7 +131,7 @@ export function FarmSettingsForm() {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Farm Description</FormLabel>
+              <FormLabel>{t.farmDescriptionLabel}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell us a little about your farm"
@@ -141,9 +146,11 @@ export function FarmSettingsForm() {
 
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Save Changes
+          {t.saveChanges}
         </Button>
       </form>
     </Form>
   );
 }
+
+    
