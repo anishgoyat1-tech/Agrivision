@@ -75,7 +75,7 @@ const indianStates = [
 
 export function FarmSettingsForm() {
   const { toast } = useToast();
-  const { farmSettings, setFarmSettings } = useFarmSettings();
+  const { farmSettings, setFarmSettings, setIsSettingsSaved } = useFarmSettings();
   const { language } = useLanguage();
   const t = translations[language].farmSettings;
 
@@ -90,6 +90,7 @@ export function FarmSettingsForm() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     setFarmSettings(values as FarmSettings);
+    setIsSettingsSaved(true);
     reset(values);
     toast({
       title: "Farm Settings Updated",

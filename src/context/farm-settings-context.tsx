@@ -13,6 +13,8 @@ export type FarmSettings = {
 type FarmSettingsContextType = {
   farmSettings: FarmSettings;
   setFarmSettings: (settings: FarmSettings) => void;
+  isSettingsSaved: boolean;
+  setIsSettingsSaved: (isSaved: boolean) => void;
 };
 
 const FarmSettingsContext = createContext<FarmSettingsContextType | undefined>(undefined);
@@ -27,9 +29,10 @@ const defaultFarmSettings: FarmSettings = {
 
 export function FarmSettingsProvider({ children }: { children: ReactNode }) {
   const [farmSettings, setFarmSettings] = useState<FarmSettings>(defaultFarmSettings);
+  const [isSettingsSaved, setIsSettingsSaved] = useState(false);
 
   return (
-    <FarmSettingsContext.Provider value={{ farmSettings, setFarmSettings }}>
+    <FarmSettingsContext.Provider value={{ farmSettings, setFarmSettings, isSettingsSaved, setIsSettingsSaved }}>
       {children}
     </FarmSettingsContext.Provider>
   );
