@@ -26,7 +26,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <SidebarProvider>
-      <div className={cn(!isSettingsSaved && "blur-sm")}>
+      <div className={cn("relative min-h-screen", !isSettingsSaved && "blur-sm pointer-events-none")}>
         <Sidebar variant="inset" collapsible="icon">
           <SidebarHeader className="p-4">
             <Link href="/" className="flex items-center gap-2">
@@ -41,16 +41,18 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </SidebarContent>
         </Sidebar>
         <SidebarInset>
-          <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30 md:static md:z-auto md:bg-transparent md:border-none">
-            <SidebarTrigger className="md:hidden" />
-            <div className="w-full flex-1">
-              {/* Future: Breadcrumbs or Search */}
-            </div>
-            <UserNav />
-          </header>
-          <main className="flex-1 p-4 md:p-6 lg:p-8">
-            {children}
-          </main>
+          <div className="flex flex-col h-screen">
+            <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30">
+              <SidebarTrigger className="md:hidden" />
+              <div className="w-full flex-1">
+                {/* Future: Breadcrumbs or Search */}
+              </div>
+              <UserNav />
+            </header>
+            <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
+              {children}
+            </main>
+          </div>
         </SidebarInset>
       </div>
 
