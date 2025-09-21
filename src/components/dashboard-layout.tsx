@@ -26,8 +26,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <SidebarProvider>
-      <div className={cn("relative min-h-screen", !isSettingsSaved && "blur-sm pointer-events-none")}>
-        <Sidebar variant="inset" collapsible="icon">
+      <div className={cn("relative min-h-screen w-full", !isSettingsSaved && "blur-sm pointer-events-none")}>
+        <Sidebar>
           <SidebarHeader className="p-4">
             <Link href="/" className="flex items-center gap-2">
               <div className="bg-primary text-primary-foreground p-2 rounded-lg">
@@ -40,8 +40,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Nav />
           </SidebarContent>
         </Sidebar>
-        <SidebarInset>
-          <div className="flex flex-col h-screen">
+        <div className="flex flex-col md:ml-64">
             <header className="flex h-14 items-center gap-4 border-b bg-card px-4 lg:h-[60px] lg:px-6 sticky top-0 z-30">
               <SidebarTrigger className="md:hidden" />
               <div className="w-full flex-1">
@@ -52,8 +51,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
               {children}
             </main>
-          </div>
-        </SidebarInset>
+        </div>
       </div>
 
       <Dialog open={!isSettingsSaved} >
