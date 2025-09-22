@@ -10,7 +10,7 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const DashboardSummaryInputSchema = z.object({
-  location: z.string().describe('The location of the farm.'),
+  location: z.string().describe('The location of the farm, which is a state in India.'),
   language: z.string().describe('The language for the summary (e.g., "en", "hi", "pa" for English, Hindi, Punjabi).'),
 });
 
@@ -34,12 +34,12 @@ const DashboardSummaryOutputSchema = z.object({
   alerts: z.array(
     z.object({
       id: z.number(),
-      area: z.string().describe('The area of the farm with the alert.'),
-      issue: z.string().describe('The issue detected.'),
+      area: z.string().describe('The district or region within the state with the alert.'),
+      issue: z.string().describe('The issue detected based on current news or events.'),
       severity: z.enum(['High', 'Medium', 'Low']),
-      time: z.string().describe('How long ago the alert was triggered.'),
+      time: z.string().describe('How long ago the alert was reported (e.g., "1 day ago").'),
     })
-  ).describe('A list of critical alerts for the farm.'),
+  ).describe('A list of critical, state-wide agricultural alerts based on recent news and events for the specified state.'),
 });
 
 export type DashboardSummaryOutput = z.infer<
@@ -54,16 +54,16 @@ const prompt = ai.definePrompt({
   name: 'dashboardSummaryPrompt',
   input: { schema: DashboardSummaryInputSchema },
   output: { schema: DashboardSummaryOutputSchema },
-  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard located in {{{location}}}. The summary should be in the language requested: {{{language}}}.
+  prompt: `You are an expert agricultural AI. Generate a realistic and dynamic summary for a smart farm dashboard for the state of {{{location}}}, India. The summary should be in the language requested: {{{language}}}.
   
   Provide the following information:
-  - Overall crop health percentage and its trend from last week.
-  - Average soil moisture and the optimal range.
+  - Overall crop health percentage and its trend from last week for a typical farm in the region.
+  - Average soil moisture and the optimal range for a typical farm in the region.
   - Current pest risk level with a brief description, tailored to the location.
   - A yield forecast compared to the previous season with brief details, tailored to the location.
-  - A list of 3-5 critical alerts with area, issue, severity, and time.
+  - A list of 3-5 critical, STATE-WIDE agricultural alerts for {{{location}}} based on recent news, events, or weather reports. The 'area' for each alert should be a district or region within the state. Make the times for alerts recent (e.g., "hours ago", "days ago").
   
-  Ensure the data is varied and reflects a typical day on a technologically advanced farm. Make the times for alerts recent (e.g., "minutes ago", "hours ago").`,
+  Ensure the data is varied and reflects typical conditions and recent events in {{{location}}}.`,
 });
 
 const dashboardSummaryFlow = ai.defineFlow(
