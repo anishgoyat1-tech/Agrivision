@@ -1,16 +1,12 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
-import { getPlaceholderImage } from "@/lib/placeholder-images";
 import { NdviAnalysisForm } from "./_components/ndvi-analysis-form";
 import { Leaf } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
 import { translations } from "@/lib/translations";
 
 export default function CropHealthPage() {
-  const cropHealthMap = getPlaceholderImage("crop-health-map");
-  const cropRowsImage = getPlaceholderImage("crop-rows-sunset");
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -25,47 +21,15 @@ export default function CropHealthPage() {
             <p className="text-muted-foreground">{t.cropHealth.description}</p>
         </div>
       </header>
-      <div className="grid gap-6 lg:grid-cols-5">
-        <Card className="lg:col-span-3">
-          <CardHeader>
-            <CardTitle>{t.cropHealth.mapTitle}</CardTitle>
-            <CardDescription>{t.cropHealth.mapDescription}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {cropHealthMap && (
-              <div className="relative aspect-video overflow-hidden rounded-lg border">
-                <Image
-                  src={cropHealthMap.imageUrl}
-                  alt={cropHealthMap.description}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={cropHealthMap.imageHint}
-                />
-              </div>
-            )}
-            {cropRowsImage && (
-              <div className="relative aspect-video overflow-hidden rounded-lg border mt-4">
-                <Image
-                  src={cropRowsImage.imageUrl}
-                  alt={cropRowsImage.description}
-                  fill
-                  className="object-cover"
-                  data-ai-hint={cropRowsImage.imageHint}
-                />
-              </div>
-            )}
-          </CardContent>
-        </Card>
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>{t.cropHealth.analysisTitle}</CardTitle>
-            <CardDescription>{t.cropHealth.analysisDescription}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <NdviAnalysisForm />
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>{t.cropHealth.analysisTitle}</CardTitle>
+          <CardDescription>{t.cropHealth.analysisDescription}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <NdviAnalysisForm />
+        </CardContent>
+      </Card>
     </div>
   );
 }
