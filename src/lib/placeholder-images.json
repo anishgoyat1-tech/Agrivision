@@ -13,6 +13,12 @@
       "imageHint": "ndvi map"
     },
     {
+      "id": "crop-rows-sunset",
+      "description": "Rows of crops in a field at sunset, with a barn in the background.",
+      "imageUrl": "https://picsum.photos/seed/crop-rows/1200/600",
+      "imageHint": "farm sunset"
+    },
+    {
       "id": "field-heatmap",
       "description": "A heatmap of a field showing variations in some metric.",
       "imageUrl": "https://picsum.photos/seed/heatmap/1200/600",

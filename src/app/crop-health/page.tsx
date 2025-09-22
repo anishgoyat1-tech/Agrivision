@@ -10,6 +10,7 @@ import { translations } from "@/lib/translations";
 
 export default function CropHealthPage() {
   const cropHealthMap = getPlaceholderImage("crop-health-map");
+  const cropRowsImage = getPlaceholderImage("crop-rows-sunset");
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -30,7 +31,7 @@ export default function CropHealthPage() {
             <CardTitle>{t.cropHealth.mapTitle}</CardTitle>
             <CardDescription>{t.cropHealth.mapDescription}</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
             {cropHealthMap && (
               <div className="relative aspect-video overflow-hidden rounded-lg border">
                 <Image
@@ -39,6 +40,17 @@ export default function CropHealthPage() {
                   fill
                   className="object-cover"
                   data-ai-hint={cropHealthMap.imageHint}
+                />
+              </div>
+            )}
+            {cropRowsImage && (
+              <div className="relative aspect-video overflow-hidden rounded-lg border mt-4">
+                <Image
+                  src={cropRowsImage.imageUrl}
+                  alt={cropRowsImage.description}
+                  fill
+                  className="object-cover"
+                  data-ai-hint={cropRowsImage.imageHint}
                 />
               </div>
             )}
