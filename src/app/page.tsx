@@ -70,7 +70,7 @@ export default function Dashboard() {
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="text-3xl font-bold tracking-tight font-headline">{t.title}</h1>
-        <p className="text-muted-foreground">{`Welcome back! Here's a snapshot of your farm's health in ${farmSettings.farmLocation}.`}</p>
+        <p className="text-muted-foreground">{`Welcome back! Here's a snapshot of ${farmSettings.farmLocation} Farms.`}</p>
       </header>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
